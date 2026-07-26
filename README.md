@@ -112,11 +112,16 @@ The default test suite uses mock servers and fake HTTP clients — no external n
 To verify against the real OpenAI/OpenRouter APIs:
 
 ```bash
-RUN_E2E_TESTS=1 OPENAI_API_KEY=sk-... OPENROUTER_API_KEY=sk-... composer test:e2e
+# 1. Copy the config template and fill in your API keys
+cp tests/config.json.example tests/config.json
+
+# 2. Run e2e tests (API keys are loaded from tests/config.json)
+RUN_E2E_TESTS=1 composer test:e2e
 ```
 
 These tests are **opt-in** and skipped by default. They make real API calls
-and may incur costs.
+and may incur costs. The `tests/config.json` file is gitignored and will
+never be committed.
 
 ## License
 

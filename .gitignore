@@ -197,3 +197,6 @@ $RECYCLE.BIN/
 # Doctum
 /cache
 # /doctum.php
+
+# E2E test config (contains real API keys)
+tests/config.json

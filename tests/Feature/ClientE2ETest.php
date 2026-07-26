@@ -11,19 +11,30 @@ use Cable8mm\NanoAI\Exception\AuthenticationException;
 |--------------------------------------------------------------------------
 | These tests make real API calls to OpenAI/OpenRouter and require:
 |   - RUN_E2E_TESTS=1 environment variable
-|   - Valid API keys (OPENAI_API_KEY, OPENROUTER_API_KEY)
+|   - tests/config.json with valid API keys (copy from tests/config.json.example)
 |
 | Run with:
-|   RUN_E2E_TESTS=1 OPENAI_API_KEY=sk-... OPENROUTER_API_KEY=sk-... composer test:e2e
+|   RUN_E2E_TESTS=1 composer test:e2e
 |
 | These tests are opt-in and skipped by default. They make real API calls
 | and may incur costs.
 */
 
+// Load API keys from tests/config.json (gitignored) if it exists.
+$configFile = __DIR__.'/config.json';
+if (file_exists($configFile)) {
+    $config = json_decode(file_get_contents($configFile), true);
+    if (is_array($config)) {
+        foreach ($config as $key => $value) {
+            putenv("{$key}={$value}");
+        }
+    }
+}
+
 uses()->group('e2e');
 
 $skipE2E = ! getenv('RUN_E2E_TESTS');
-$skipMsg = 'Set RUN_E2E_TESTS=1 and provide API keys to run e2e tests.';
+$skipMsg = 'Set RUN_E2E_TESTS=1 and create tests/config.json with API keys to run e2e tests.';
 
 it('generates text with OpenAI API', function () {
     $client = new Client('openai', getenv('OPENAI_API_KEY') ?: null);
