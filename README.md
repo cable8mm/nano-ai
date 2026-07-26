@@ -55,6 +55,42 @@ $client = new Client(
 
 All extend `NanoAIException`, so you can catch them all at once.
 
+## Using Guzzle as the HTTP Client (Optional)
+
+By default, nano-ai uses a minimal cURL-based HTTP client with zero external dependencies.
+If you prefer Guzzle (or need its advanced features like middleware, retries, proxies, etc.),
+install it and inject the provided `GuzzleHttpClient`:
+
+```bash
+composer require guzzlehttp/guzzle
+```
+
+```php
+use Cable8mm\NanoAI\Client;
+use Cable8mm\NanoAI\Http\GuzzleHttpClient;
+
+// Use Guzzle with default timeout settings (30s / 10s connect)
+$client = new Client(
+    provider: 'openai',
+    apiKey: 'sk-...',
+    httpClient: new GuzzleHttpClient(),
+);
+
+// Or inject a pre-configured Guzzle client for full control
+$guzzle = new \GuzzleHttp\Client([
+    'timeout' => 60,
+    'proxy' => 'http://localhost:8080',
+]);
+$client = new Client(
+    provider: 'openai',
+    apiKey: 'sk-...',
+    httpClient: new GuzzleHttpClient($guzzle),
+);
+```
+
+The `GuzzleHttpClient` implements the same `HttpClientInterface` as the default cURL client,
+so it is a drop-in replacement. All nano-ai features (timeouts, error handling, etc.) work identically.
+
 ## Adding a New Provider
 
 Create a class implementing `NanoAI\Provider\ProviderInterface` (if it's an OpenAI-compatible API, you can extend `AbstractOpenAICompatibleProvider`), then add one line to `ProviderFactory::make()`.

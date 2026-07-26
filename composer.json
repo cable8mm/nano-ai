@@ -15,8 +15,12 @@
     "ext-json": "*"
   },
   "require-dev": {
+    "guzzlehttp/guzzle": "^7.0",
     "laravel/pint": "^1.29",
     "pestphp/pest": "*"
+  },
+  "suggest": {
+    "guzzlehttp/guzzle": "Allows using GuzzleHttpClient for HTTP requests instead of the default cURL-based HttpClient. Install with: composer require guzzlehttp/guzzle"
   },
   "license": "MIT",
   "autoload": {
