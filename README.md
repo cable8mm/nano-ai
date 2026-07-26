@@ -41,6 +41,37 @@ echo $client->generate('Hello?');
 echo $client->generate('Describe this photo', imageUrl: '/path/to/photo.jpg');
 ```
 
+## Configuration Options
+
+The `Client` constructor accepts an optional `$options` array to customize behavior:
+
+```php
+$client = new Client(
+    provider: 'openai',
+    apiKey: 'sk-...',
+    model: 'gpt-4o',
+    options: [
+        'timeout' => 60,           // Request timeout in seconds (default: 120)
+        'connectTimeout' => 10,    // Connection timeout in seconds (default: 30)
+        'baseUrl' => 'https://custom-api.example.com',  // Override provider base URL
+        'referer' => 'https://myapp.com',               // Custom referer header
+        'title' => 'My App',                            // Custom title header
+    ]
+);
+```
+
+### Available Options
+
+| Option           | Type     | Default          | Description                                     |
+| ---------------- | -------- | ---------------- | ----------------------------------------------- |
+| `timeout`        | `int`    | `120`            | Maximum time to wait for API response (seconds) |
+| `connectTimeout` | `int`    | `30`             | Maximum time to establish connection (seconds)  |
+| `baseUrl`        | `string` | Provider default | Override the API base URL                       |
+| `referer`        | `string` | None             | Custom `Referer` header sent with requests      |
+| `title`          | `string` | None             | Custom `X-Title` header sent with requests      |
+
+**Note:** Options like `baseUrl`, `referer`, and `title` are particularly useful when using OpenRouter or custom OpenAI-compatible APIs.
+
 To test with free/low-cost models:
 
 ```php
