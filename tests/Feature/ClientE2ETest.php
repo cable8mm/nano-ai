@@ -21,7 +21,7 @@ use Cable8mm\NanoAI\Exception\AuthenticationException;
 */
 
 // Load API keys from tests/config.json (gitignored) if it exists.
-$configFile = __DIR__.'/config.json';
+$configFile = __DIR__.'/../config.json';
 if (file_exists($configFile)) {
     $config = json_decode(file_get_contents($configFile), true);
     if (is_array($config)) {
@@ -56,7 +56,7 @@ it('generates text with a specific model via OpenRouter', function () {
     $client = new Client(
         'openrouter',
         getenv('OPENROUTER_API_KEY') ?: null,
-        'openai/gpt-4o-mini',
+        'google/gemma-4-26b-a4b-it:free',
     );
 
     $result = $client->generate('What is 2+2? Answer with just the number.');
