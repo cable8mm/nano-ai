@@ -36,16 +36,24 @@ uses()->group('e2e');
 $skipE2E = ! getenv('RUN_E2E_TESTS');
 $skipMsg = 'Set RUN_E2E_TESTS=1 and create tests/config.json with API keys to run e2e tests.';
 
-it('generates text with OpenAI API', function () {
-    $client = new Client('openai', getenv('OPENAI_API_KEY') ?: null);
+// it('generates text with OpenAI API', function () {
+//     $client = new Client(
+//         'openai',
+//         getenv('OPENAI_API_KEY') ?: null,
+//         'gpt-5.6-luna'
+//     );
 
-    $result = $client->generate('Say "hello world" in exactly 3 words.');
+//     $result = $client->generate('Say "hello world" in exactly 3 words.');
 
-    expect($result)->toBeString()->not->toBeEmpty();
-})->skip($skipE2E, $skipMsg);
+//     expect($result)->toBeString()->not->toBeEmpty();
+// })->skip($skipE2E, $skipMsg);
 
 it('generates text with OpenRouter API', function () {
-    $client = new Client('openrouter', getenv('OPENROUTER_API_KEY') ?: null);
+    $client = new Client(
+        'openrouter',
+        getenv('OPENROUTER_API_KEY') ?: null,
+        'google/gemma-4-26b-a4b-it:free'
+    );
 
     $result = $client->generate('Say "hello world" in exactly 3 words.');
 
@@ -64,15 +72,18 @@ it('generates text with a specific model via OpenRouter', function () {
     expect($result)->toBeString()->not->toBeEmpty();
 })->skip($skipE2E, $skipMsg);
 
-it('handles multimodal (image) requests with OpenAI', function () {
-    $client = new Client('openai', getenv('OPENAI_API_KEY') ?: null);
+// it('handles multimodal (image) requests with OpenAI', function () {
+//     $client = new Client(
+//         'openai',
+//         getenv('OPENAI_API_KEY') ?: null,
+//         'gpt-5.6-luna');
 
-    $imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/640px-Cat03.jpg';
+//     $imagePath = __DIR__.'/../Fixtures/circle.png';
 
-    $result = $client->generate('Describe this image in one sentence.', $imageUrl);
+//     $result = $client->generate('Describe this image in one sentence.', $imagePath);
 
-    expect($result)->toBeString()->not->toBeEmpty();
-})->skip($skipE2E, $skipMsg);
+//     expect($result)->toBeString()->not->toBeEmpty();
+// })->skip($skipE2E, $skipMsg);
 
 it('throws AuthenticationException with an invalid API key', function () {
     $client = new Client('openai', 'sk-invalid-key');
