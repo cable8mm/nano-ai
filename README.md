@@ -29,7 +29,11 @@ composer require cable8mm/nano-ai
 use Cable8mm\NanoAI\Client;
 
 // If API Key is omitted, it will be automatically read from the OPENAI_API_KEY / OPENROUTER_API_KEY environment variables.
-$client = new Client(provider: 'openai');
+$client = new Client(
+  provider: 'openai',
+  apiKey: <openai api key>,
+  model: <model name>
+);
 
 echo $client->generate('Hello?');
 
@@ -42,6 +46,7 @@ To test with free/low-cost models:
 ```php
 $client = new Client(
     provider: 'openrouter',
+    apiKey: <openrouter api key>,
     model: 'deepseek/deepseek-chat:free', // Check the latest list at https://openrouter.ai/models?max_price=0
 );
 ```
