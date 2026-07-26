@@ -1,0 +1,44 @@
+{
+  "name": "cable8mm/nano-ai",
+  "description": "A lightweight, zero-configuration PHP SDK for straightforward text generation and multimodal AI interactions.",
+  "type": "library",
+  "homepage": "https://github.com/cable8mm/nano-ai",
+  "authors": [
+    {
+      "name": "Samgu Lee",
+      "email": "cable8mm@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.3",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.29",
+    "pestphp/pest": "*"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Cable8mm\\NanoAI\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Cable8mm\\NanoAI\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "scripts": {
+    "test": "./vendor/bin/pest",
+    "lint": "./vendor/bin/pint",
+    "inspect": "./vendor/bin/pint --test"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
