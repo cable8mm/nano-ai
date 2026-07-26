@@ -54,8 +54,8 @@ final class Client
         $this->provider = ProviderFactory::make($provider, $apiKey, $options);
         $this->model = $model ?? $this->provider->getDefaultModel();
         $this->http = $httpClient ?? new HttpClient(
-            timeoutSeconds: $options['timeout'] ?? 30,
-            connectTimeoutSeconds: $options['connectTimeout'] ?? 10,
+            timeoutSeconds: $options['timeout'] ?? 120,
+            connectTimeoutSeconds: $options['connectTimeout'] ?? 30,
         );
     }
 
