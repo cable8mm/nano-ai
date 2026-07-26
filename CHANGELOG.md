@@ -1,5 +1,13 @@
 # Release Notes
 
+## v0.1.2 - 2026-07-26
+
+### What's Changed
+
+* docs: update README.md to include configuration options for Client by [@cable8mm](https://github.com/cable8mm) in https://github.com/cable8mm/nano-ai/pull/6
+
+**Full Changelog**: https://github.com/cable8mm/nano-ai/compare/v0.1.1...v0.1.2
+
 ## v0.1.1 - 2026-07-26
 
 ### What's Changed
