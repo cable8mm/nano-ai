@@ -1,5 +1,14 @@
 # Release Notes
 
+## v0.1.1 - 2026-07-26
+
+### What's Changed
+
+* chore: update README.md to include apiKey by [@cable8mm](https://github.com/cable8mm) in https://github.com/cable8mm/nano-ai/pull/4
+* feat: increase default timeout values for HTTP client by [@cable8mm](https://github.com/cable8mm) in https://github.com/cable8mm/nano-ai/pull/5
+
+**Full Changelog**: https://github.com/cable8mm/nano-ai/compare/v0.1.0...v0.1.1
+
 ## v0.1.0 - 2026-07-26
 
 ### What's Changed
