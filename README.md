@@ -1,4 +1,11 @@
-# nano-ai
+# NanoAI
+
+[![code-style](https://github.com/cable8mm/nano-ai/actions/workflows/code-style.yml/badge.svg)](https://github.com/cable8mm/nano-ai/actions/workflows/code-style.yml)
+[![run-tests](https://github.com/cable8mm/nano-ai/actions/workflows/run-tests.yml/badge.svg)](https://github.com/cable8mm/nano-ai/actions/workflows/run-tests.yml)
+![PHP Version](https://img.shields.io/packagist/dependency-v/cable8mm/nano-ai/php)
+![Packagist Version](https://img.shields.io/packagist/v/cable8mm/nano-ai)
+![Packagist Downloads](https://img.shields.io/packagist/dt/cable8mm/nano-ai)
+![Packagist License](https://img.shields.io/packagist/l/cable8mm/nano-ai)
 
 Ultra-lightweight, zero-config PHP AI SDK. No agents/RAG — just `generate()` for text + image (multimodal) calls.
 Use it for testing, lightweight pipelines, and idea validation.
@@ -13,13 +20,13 @@ Use it for testing, lightweight pipelines, and idea validation.
 ## Installation
 
 ```bash
-composer require vendor/nano-ai
+composer require cable8mm/nano-ai
 ```
 
 ## Usage
 
 ```php
-use NanoAI\Client;
+use Cable8mm\NanoAI\Client;
 
 // If API Key is omitted, it will be automatically read from the OPENAI_API_KEY / OPENROUTER_API_KEY environment variables.
 $client = new Client(provider: 'openai');
@@ -50,6 +57,18 @@ All extend `NanoAIException`, so you can catch them all at once.
 
 ## Adding a New Provider
 
-Create a class implementing `NanoAI\Provider\ProviderInterface` (if it's an OpenAI-compatible API,
-you can extend `AbstractOpenAICompatibleProvider`), then add one line to `ProviderFactory::make()`.
+Create a class implementing `NanoAI\Provider\ProviderInterface` (if it's an OpenAI-compatible API, you can extend `AbstractOpenAICompatibleProvider`), then add one line to `ProviderFactory::make()`.
+
 No need to modify `Client` or `HttpClient`.
+
+## Development
+
+```bash
+composer install
+composer test
+composer lint
+```
+
+## License
+
+MIT
